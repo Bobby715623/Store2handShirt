@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}
+Login
+{% endblock %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+</head>
+<body>
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button class="btn btn-success" type="submit">login</button>
+        </form>
+        <p>ยังไม่มีสมาชิคหรอ สมัครเลย <a href="{%url 'register'%}">click me</a></p>
+    </div>
+</body>
+</html>
+{% endblock %}

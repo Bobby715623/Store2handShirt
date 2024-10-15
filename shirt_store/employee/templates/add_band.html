@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}
+Add Band
+{% endblock %}
+{% block content %}
+    <h2>Add New Band</h2>
+    
+    {% if form.errors %}
+        <ul>
+            {% for field, errors in form.errors.items %}
+                {% for error in errors %}
+                    <li>{{ field }}: {{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+    
+    <form method="POST" action="{% url 'add_band' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Band</button>
+    </form>
+{% endblock %}

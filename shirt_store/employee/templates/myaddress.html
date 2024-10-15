@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Band T Shirt</title>
+</head>
+<body>
+    <a href="{% url 'mainpage'%}">
+        <button type="button">Back to Store</button>
+    </a>
+    {% if request.session.customer_first_name %}
+    <p>Welcome to store {{ request.session.customer_first_name }}</p>
+    {% else %}
+    <p>Welcome to store, please log in.</p>
+    {% endif %}
+    {% if request.session.customer_id %}
+        <a href="{% url 'address' request.session.customer_id %}">
+            <button type="button">Add Address</button>
+        </a>
+    {% endif %}
+    {% if cusadd %}
+        {%for i in cusadd%}
+        <div class="item" style="background-color: red; margin: 20px;">
+        <p>Province: {{ i.province }}</p>
+        <p>District: {{ i.district }}</p>
+        <p>Subdistrict: {{ i.subdistrict }}</p>
+        <p>Post Number: {{ i.post_num }}</p>
+        <p>Address Info: {{ i.addressinfo }}</p>
+        <a href="{% url 'address' request.session.customer_id %}">
+            <button class="btn btn-warning" type="button">Edit</button>
+        </a>
+        </div>
+        {%endfor%}
+    {% elif error %}
+        <p>{{ error }}</p>
+    {% endif %}
+</body>
+</html>
+{% endblock %}

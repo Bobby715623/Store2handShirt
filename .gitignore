@@ -1,0 +1,5 @@
+myvenv/
+.dist/
+*.pyc
+shirt_store/*/__pycache__/
+shirt_store/*/migrations/__pycache__/
